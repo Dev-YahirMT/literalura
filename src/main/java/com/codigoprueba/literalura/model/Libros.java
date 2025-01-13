@@ -13,9 +13,8 @@ public class Libros {
     private Integer idApi;
     private String titulo;
     private Integer descargas;
-    private String fecha;
     private String idioma;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "autor_id", nullable = false)
     private Autores autores;
 
@@ -28,13 +27,23 @@ public class Libros {
         this.titulo = Resultado.Libros().get(0).title();
         this.idApi = Resultado.Libros().get(0).id();
         this.descargas = Resultado.Libros().get(0).download_count();
-        this.fecha = Resultado.Libros().get(0).title();
         try {
             this.idioma = objectMapper.writeValueAsString(Resultado.Libros().get(0).languages());
         } catch (Exception e) {
             e.printStackTrace();
         }
         this.autores = new Autores(Resultado.Libros().get(0).Author().get(0));
+    }
+    public Libros(DatosLibro Resultado, Autores autor){
+        this.titulo = Resultado.title();
+        this.idApi = Resultado.id();
+        this.descargas = Resultado.download_count();
+        try {
+            this.idioma = objectMapper.writeValueAsString(Resultado.languages());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.autores = autor;
     }
 
     public Long getId() {
@@ -69,14 +78,6 @@ public class Libros {
         this.descargas = descargas;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public String getIdioma() {
         return idioma;
     }
@@ -100,7 +101,6 @@ public class Libros {
                 ", idApi=" + idApi +
                 ", titulo='" + titulo + '\'' +
                 ", descargas=" + descargas +
-                ", fecha='" + fecha + '\'' +
                 ", idioma='" + idioma + '\'' +
                 ", autores=" + autores +
                 ", objectMapper=" + objectMapper +

@@ -2,6 +2,7 @@ package com.codigoprueba.literalura.service;
 
 import com.codigoprueba.literalura.Model.Autores;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

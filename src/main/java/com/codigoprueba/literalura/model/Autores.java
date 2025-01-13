@@ -25,5 +25,34 @@ public class Autores {
         this.birth_year = autor.birth_year();
         this.death_year = autor.death_year();
     }
+    public Autores(String cNombre, String CBirth_year, String CDeath_year){
+        this.nombre = cNombre;
+        this.birth_year = CBirth_year;
+        this.death_year = CDeath_year;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getBirth_year() {
+        return birth_year;
+    }
+
+    public void setBirth_year(String birth_year) {
+        this.birth_year = birth_year;
+    }
+
+    public String getDeath_year() {
+        return death_year;
+    }
+
+    public void setDeath_year(String death_year) {
+        this.death_year = death_year;
+    }
 }
 
